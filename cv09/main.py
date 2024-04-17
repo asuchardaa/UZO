@@ -89,7 +89,7 @@ def draw_centroids(image, centroids):
     """
     image = image.copy()
     for x, y in centroids:
-        cv2.drawMarker(image, (x, y), (255, 0, 0), markerType=cv2.MARKER_STAR, markerSize=5)
+        cv2.drawMarker(image, (x, y), (255, 0, 0), markerType=cv2.MARKER_CROSS, markerSize=5)
     return image
 
 
@@ -123,9 +123,9 @@ def main():
     centroids_original = calculate_centroids(filtered_labels_original)
     centroids_top_hat = calculate_centroids(filtered_labels_top_hat)
     image_colored = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
-    centroid_image = draw_centroids(image_colored, centroids_original + centroids_top_hat)
+    centroid_image = draw_centroids(image_colored, centroids_top_hat)
 
-    plt.imshow(centroid_image), plt.title('Pocet zrnicek:' + str(final_count_top_hat))
+    plt.imshow(centroid_image), plt.title('Pocet zrnicek: ' + str(final_count_top_hat))
     plt.show()
 
     print(f'Počet zrníček rýže na obrázku: {final_count_top_hat}')
